@@ -14,7 +14,7 @@ export class MovieApiService {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YmNlMzA4MDA5MTM4YzExYmQ1ZWMxNTA4NmY2ODQ4MyIsIm5iZiI6MTYyMzE5OTUzNi41MzksInN1YiI6IjYwYzAwZjMwNWIxMjQwMDA3YTc0N2IyNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kEm9KuWOTvqNYEW1r4xFOWQ7g7SbsWupIiMss_L3gvk'
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOGY1ZjA2NmMzZmMxMGNhM2U3NDk1NTFiM2FjNTI3NiIsIm5iZiI6MTc0NjY2MDQ5NC40NTgsInN1YiI6IjY4MWJlYzhlYTJlYzBlZjBjNTYzYjU0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2FurKlmJ9JCbMuhGMjXNCAmmaIdvXxr0eIMpLypoQuo'
     }
   };
 
@@ -36,6 +36,21 @@ export class MovieApiService {
   // Filmes de animação mais populares
   popularAnimationMovieApiData(): Observable<any> {
     return this.http.get(`${this.baseUrl}/discover/movie?language=pt-br&with_genres=16&sort_by=popularity.desc`, this.options)
+  }
+
+  // Detalhes do Filme ou Série
+  mediaDetails(type: any, value: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${type}/${value}?language=pt-br`, this.options);
+  }
+  
+  // Trailers do Filme ou Série
+  mediaTrailers(type: any, value: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${type}/${value}/videos?language=pt-br`, this.options);
+  }
+
+  // Trailers do Filme ou Série
+  mediaCast(type: any, value: any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${type}/${value}/credits?language=pt-br`, this.options);
   }
 
 }
