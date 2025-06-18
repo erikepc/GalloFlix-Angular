@@ -1,3 +1,4 @@
+
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MovieApiService } from '../../services/movie-api.service';
@@ -12,49 +13,47 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private service: MovieApiService) {};
+  constructor (private service: MovieApiService) {}
 
   bannerResults: any = [];
   trendingMovieResults: any = [];
   trendingSerieResults: any = [];
-  popularAnimationMovieResults: any = []; 
+  popularActionMovieResults: any = [];
 
   ngOnInit(): void {
     this.bannerData();
     this.trendingMovieData();
     this.trendingSerieData();
-    this.popularAnimationMovieData();
+    this.popularActionMovieData();
   }
 
-  // Banner
+  // Consumo do Serviço de Banner
   bannerData() {
     this.service.bannerApiData().subscribe((result) => {
-      //console.log(result.results);
+      //console.log(result)
       this.bannerResults = result.results;
-    })
+    });
   }
 
   // Filmes em Destaque
   trendingMovieData() {
     this.service.trendingMovieApiData().subscribe((result) => {
-      this.trendingMovieResults = result.results; 
-
+      this.trendingMovieResults = result.results;
     })
   }
 
   // Series em Destaque
   trendingSerieData() {
     this.service.trendingSerieApiData().subscribe((result) => {
-      this.trendingSerieResults = result.results; 
-
+      this.trendingSerieResults = result.results;
     })
   }
 
   // Filmes Populares
-  popularAnimationMovieData() {
-    this.service.popularAnimationMovieApiData().subscribe((result) => {
-      this.popularAnimationMovieResults = result.results; 
-
+  popularActionMovieData() {
+    this.service.popularActionMovieApiData().subscribe((result) => {
+      this.popularActionMovieResults = result.results;
     })
   }
+
 }
